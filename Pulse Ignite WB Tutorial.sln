@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pulse Ignite WB Tutorial", "Pulse Ignite WB Tutorial\Pulse Ignite WB Tutorial.csproj", "{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|ARM.ActiveCfg = Debug|ARM
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|ARM.Build.0 = Debug|ARM
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|ARM.Deploy.0 = Debug|ARM
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|ARM64.Build.0 = Debug|ARM64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|x64.ActiveCfg = Debug|x64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|x64.Build.0 = Debug|x64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|x64.Deploy.0 = Debug|x64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|x86.ActiveCfg = Debug|x86
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|x86.Build.0 = Debug|x86
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Debug|x86.Deploy.0 = Debug|x86
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|ARM.ActiveCfg = Release|ARM
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|ARM.Build.0 = Release|ARM
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|ARM.Deploy.0 = Release|ARM
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|ARM64.ActiveCfg = Release|ARM64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|ARM64.Build.0 = Release|ARM64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|ARM64.Deploy.0 = Release|ARM64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|x64.ActiveCfg = Release|x64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|x64.Build.0 = Release|x64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|x64.Deploy.0 = Release|x64
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|x86.ActiveCfg = Release|x86
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|x86.Build.0 = Release|x86
+		{BD32AD30-FBFB-4F7B-BD65-9FDED72ACD13}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADB2A15A-8B13-406A-A11C-5FE84C1E5579}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+﻿body {
+    background: #FF222831 !important;
+    padding: 0;
+    margin: 0;
+}
+
+.logo {
+    width: 50%;
+    margin: 50px auto;
+    font-size: 2rem;
+    text-align: center;
+}

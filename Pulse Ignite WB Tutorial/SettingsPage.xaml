@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="Pulse_Ignite_WB_Tutorial.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Pulse_Ignite_WB_Tutorial"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource wbListBoxBackground}"
+    RequestedTheme="Dark"
+    x:Name="settingsPage"
+    Loaded="settingsPage_Loaded">
+
+    <Grid>
+        <!--Red Line-->
+        <Rectangle Height="1" Fill="{StaticResource wbForeground}" VerticalAlignment="Top" />
+        <!--NavigationView-->
+        <NavigationView x:Name="SettingsNavView" PaneTitle="Settings" IsPaneToggleButtonVisible="True" IsSettingsVisible="False" Margin="0,1,0,0" SelectionChanged="SettingsNavView_SelectionChanged" IsBackButtonVisible="Collapsed" Background="{StaticResource wbBackground}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Tag="accountSetMenu"  Icon="Account" Content="Accounts" /> <!--Profile/Account-->
+                <NavigationViewItem Tag="bookmarkSetMenu" Icon="Bookmarks" Content="Bookmarks"/>
+                <NavigationViewItem Tag="historySetMenu" Icon="Clock" Content="History"/>
+                <NavigationViewItem Tag="searchSetMenu" Content="Search">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame"/>
+        </NavigationView>
+
+    </Grid>
+</Page>
