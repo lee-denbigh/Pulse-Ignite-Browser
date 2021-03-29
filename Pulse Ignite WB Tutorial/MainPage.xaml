@@ -16,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <!--Title Bar Row Definition-->
-            <RowDefinition Height="40"/>    
+            <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
@@ -43,11 +43,11 @@
                 <Button x:Name="backBtn" Margin="0,0,10,0" Background="{x:Null}" Click="backBtn_Click" BorderThickness="0,0,0,0">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC52;" Foreground="{StaticResource wbForeground}" />
                 </Button>
-                
+
                 <Button x:Name="frdBtn" Background="{x:Null}" Click="frdBtn_Click" BorderThickness="0,0,0,0">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEBE7;" Foreground="{StaticResource wbForeground}" />
                 </Button>
-                
+
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,10,0" HorizontalAlignment="Right">
                 <Button x:Name="homeBtn" Background="{x:Null}" BorderThickness="0,0,0,0" Click="homeBtn_Click">
@@ -68,12 +68,20 @@
 
             <!--Search Bar-->
             <TextBox x:Name="SearchBar" Grid.Column="2" TextWrapping="NoWrap" PlaceholderText="Search with Google..." Height="28" VerticalContentAlignment="Center" BorderThickness="0" KeyDown="SearchBar_KeyDown" GotFocus="SearchBar_GotFocus"/>
-            
+
             <!--Search Btn-->
             <Button x:Name="SearchButton" Grid.Column="3" Background="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource wbForeground}" Click="SearchButton_Click">
                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;" />
             </Button>
-            
+
+            <!--Favourite Button-->
+            <Rectangle  Width="1" Grid.Column="4" HorizontalAlignment="Left" Fill="{StaticResource wbLighterBlue}" Margin="0,5"/>
+            <Button x:Name="favButton" Grid.Column="4" Margin="10,0" Background="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource wbForeground}" Click="favButton_Click">
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE734;" />
+            </Button>
+
+
+
             <!--Settings Flyout-->
             <Button x:Name="MenuFlyoutBtn" Grid.Column="4" HorizontalAlignment="Right" Margin="10,0" Background="{x:Null}" Foreground="{StaticResource wbForeground}" BorderThickness="0">
                 <Button.Flyout>
@@ -100,28 +108,26 @@
             </muxc:TabView.TabStripHeader>
             <muxc:TabView.TabStripFooter>
                 <Grid>
-                    
+
                 </Grid>
             </muxc:TabView.TabStripFooter>
-            <muxc:TabView.TabItems>
-                <muxc:TabViewItem x:Name="defaultTab" Header="Blank Page">
-                    <muxc:TabViewItem.IconSource>
-                        <muxc:BitmapIconSource UriSource="http://www.google.co.uk/favicon.ico" />
-                    </muxc:TabViewItem.IconSource>
-                    <WebView x:Name="webBrowser" Visibility="Visible" Margin="0,0,0,0" Source="ms-appx-web:///Assets/BlankPage.html" Grid.Row="3" NavigationCompleted="webBrowser_NavigationCompleted" NavigationStarting="webBrowser_NavigationStarting" NewWindowRequested="webBrowser_NewWindowRequested">
-                        <FlyoutBase.AttachedFlyout>
-                            <MenuFlyout  x:Name="menuFlyout">
-                                <MenuFlyoutItem x:Name="NewTabRequestContext" Text="Open Link in New Tab"/>
-                            </MenuFlyout>
-                        </FlyoutBase.AttachedFlyout>
-                    </WebView>
-                </muxc:TabViewItem>
-            </muxc:TabView.TabItems>
         </muxc:TabView>
-        
+        <muxc:TabViewItem x:Name="defaultTab" Header="Blank Page" Margin="0,0,784,0">
+            <muxc:TabViewItem.IconSource>
+                <muxc:BitmapIconSource UriSource="http://www.google.co.uk/favicon.ico" />
+            </muxc:TabViewItem.IconSource>
+            <WebView x:Name="webBrowser" Visibility="Visible" Margin="0,0,0,0" Source="ms-appx-web:///Assets/BlankPage.html" Grid.Row="3" NavigationCompleted="webBrowser_NavigationCompleted" NavigationStarting="webBrowser_NavigationStarting" NewWindowRequested="webBrowser_NewWindowRequested">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout  x:Name="menuFlyout">
+                        <MenuFlyoutItem x:Name="NewTabRequestContext" Text="Open Link in New Tab"/>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+            </WebView>
+        </muxc:TabViewItem>
+
         <!--Web View-->
 
- 
+
         <!--Status Text.-->
         <TextBlock x:Name="statusText" Grid.Row="3" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource wbDarkTextColor}"/>
     </Grid>

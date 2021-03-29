@@ -96,6 +96,8 @@ namespace Pulse_Ignite_WB_Tutorial
             await Launcher.LaunchFileAsync(file);
         }
 
+        // Search engine
+
         public async Task<List<string>> SearchEngineList(string AttributeSource)
         {
             List<string> list = new List<string>();
@@ -175,6 +177,8 @@ namespace Pulse_Ignite_WB_Tutorial
             return value;
         }
 
+        // Url
+
         public async Task<bool> HasUrlType(string searchString)
         {
             bool result = false;
@@ -203,26 +207,27 @@ namespace Pulse_Ignite_WB_Tutorial
             return result;
         }
 
-        public async void SetHome(WebView webView)
+        // Home & New tan
+
+        public async void SetHome(string Name, string Url)
         {
             var doc = await DocumentLoad();
 
             var home = doc.GetElementsByTagName("home");
 
-            home[0].Attributes.GetNamedItem("name").InnerText = webView.DocumentTitle;
-            home[0].Attributes.GetNamedItem("url").InnerText = webView.Source.AbsoluteUri;
+            home[0].Attributes.GetNamedItem("name").InnerText = Name;
+            home[0].Attributes.GetNamedItem("url").InnerText = Url;
 
             SaveDoc(doc);
         }
 
-        public async Task<string> GetHome(string Source)
+        public async Task<string> GetHomeAttribute(string Source)
         {
-            string result = string.Empty;
+            string result = "";
 
             await Task.Run(async () =>
             {
                 var doc = await DocumentLoad();
-
                 var home = doc.GetElementsByTagName("home");
 
                 result = home[0].Attributes.GetNamedItem(Source).InnerText;
@@ -232,6 +237,107 @@ namespace Pulse_Ignite_WB_Tutorial
             return result;
         }
 
+        // Bookmarks
+
+        public async void SaveBookmark(string Url, string Title)
+        {
+            var doc = await DocumentLoad();
+
+            var bookmarks = doc.GetElementsByTagName("bookmarks");
+
+            var bookmark = bookmarks[0].AppendChild(doc.CreateElement("bookmark"));
+            var bookUrl = bookmark.AppendChild(doc.CreateElement("url"));
+            var bookTitle = bookmark.AppendChild(doc.CreateElement("title"));
+
+            bookUrl.InnerText = Url;
+            bookTitle.InnerText = Title;
+
+            SaveDoc(doc);
+        }
+
+        public async Task<List<BookmarkDetails>> GetBookmarkList()
+        {
+            List<BookmarkDetails> list = new List<BookmarkDetails>();
+
+            await Task.Run(async () =>
+            {
+                var doc = await DocumentLoad();
+
+                var bookmark = doc.GetElementsByTagName("bookmark");
+
+                for (int i = 0; i < bookmark.Count; i++)
+                {
+                    var children = bookmark[i].ChildNodes;
+
+                    string returnUrl = string.Empty;
+                    string returnTitle = string.Empty;
+
+                    if(bookmark[i].NodeName == "bookmark")
+                    {
+                        for (int j = 0; j < children.Count; j++)
+                        {
+                            if(children[j].NodeName == "url")
+                            {
+                                returnUrl = children[j].InnerText;
+                            }
+
+                            if(children[j].NodeName == "title")
+                            {
+                                returnTitle = children[j].InnerText;
+                            }
+                        }
+                    }
+
+                    if(returnUrl != string.Empty && returnTitle != string.Empty)
+                    {
+                        list.Add(new BookmarkDetails
+                        {
+                            Title = returnTitle,
+                            Url = returnUrl
+                        });
+                    }
+                }
+
+            });
+
+            return list;
+        }
+
+        public async void RemoveBookmark(string Url)
+        {
+            var doc = await DocumentLoad();
+
+            var bookmark = doc.GetElementsByTagName("bookmark");
+
+            for (int i = 0; i < bookmark.Count; i++)
+            {
+                var children = bookmark[i].ChildNodes;
+
+                for (int j = 0; j < children.Count; j++)
+                {
+                    if(children[j].NodeName == Url)
+                    {
+                        children[j].ParentNode.ParentNode.RemoveChild(bookmark[i]);
+                    }
+                }
+
+            }
+
+            SaveDoc(doc);
+        }
+    }
+
+    public class BookmarkDetails
+    {
+        public string Url
+        {
+            get; set;
+        }
+
+        public string Title
+        {
+            get;set;
+        }
     }
 
 }
