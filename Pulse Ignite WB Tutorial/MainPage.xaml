@@ -20,11 +20,10 @@
             <RowDefinition/>
             <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
-
         <!--Title Area-->
-        <TextBlock x:Name="AppTitle" Text="Pulse Ignite Browser" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource wbDarkTextColor}" FocusVisualPrimaryBrush="{x:Null}"/>
+        <TextBlock x:Name="AppTitle" Text="Pulse Ignite Browser" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10,0,10,0" Foreground="{StaticResource wbDarkTextColor}" FocusVisualPrimaryBrush="{x:Null}" Height="19"/>
 
-        <Grid x:Name="TitleBarGrid" Grid.Row="1">
+        <Grid x:Name="TitleBarGrid" Grid.Row="1" Grid.ColumnSpan="2" >
             <!--Title Bar Grid-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -99,36 +98,33 @@
         </Grid>
 
 
-        <muxc:TabView x:Name="TabControl" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Background="{StaticResource wbBackground}"  AddTabButtonClick="TabControl_AddTabButtonClick" TabCloseRequested="TabControl_TabCloseRequested" SelectionChanged="TabControl_SelectionChanged">
+        <muxc:TabView x:Name="TabControl" Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" Background="{StaticResource wbBackground}"  AddTabButtonClick="TabControl_AddTabButtonClick" TabCloseRequested="TabControl_TabCloseRequested" SelectionChanged="TabControl_SelectionChanged">
             <muxc:TabView.TabStripHeader>
                 <Grid>
                     <!--Progress Ring-->
                     <ProgressRing x:Name="browserProgress" Margin="10,0" IsActive="True" Foreground="{StaticResource wbForeground}"/>
                 </Grid>
             </muxc:TabView.TabStripHeader>
-            <muxc:TabView.TabStripFooter>
-                <Grid>
 
-                </Grid>
-            </muxc:TabView.TabStripFooter>
+            <muxc:TabViewItem x:Name="defaultTab" Header="Blank Page">
+                <muxc:TabViewItem.IconSource>
+                    <muxc:BitmapIconSource UriSource="http://www.google.co.uk/favicon.ico" />
+                </muxc:TabViewItem.IconSource>
+                <WebView x:Name="webBrowser" Visibility="Visible" Margin="0,0,0,0" Source="ms-appx-web:///Assets/BlankPage.html" Grid.Row="3" NavigationCompleted="webBrowser_NavigationCompleted" NavigationStarting="webBrowser_NavigationStarting" NewWindowRequested="webBrowser_NewWindowRequested">
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout  x:Name="menuFlyout">
+                            <MenuFlyoutItem x:Name="NewTabRequestContext" Text="Open Link in New Tab"/>
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
+                </WebView>
+            </muxc:TabViewItem>
         </muxc:TabView>
-        <muxc:TabViewItem x:Name="defaultTab" Header="Blank Page" Margin="0,0,784,0">
-            <muxc:TabViewItem.IconSource>
-                <muxc:BitmapIconSource UriSource="http://www.google.co.uk/favicon.ico" />
-            </muxc:TabViewItem.IconSource>
-            <WebView x:Name="webBrowser" Visibility="Visible" Margin="0,0,0,0" Source="ms-appx-web:///Assets/BlankPage.html" Grid.Row="3" NavigationCompleted="webBrowser_NavigationCompleted" NavigationStarting="webBrowser_NavigationStarting" NewWindowRequested="webBrowser_NewWindowRequested">
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout  x:Name="menuFlyout">
-                        <MenuFlyoutItem x:Name="NewTabRequestContext" Text="Open Link in New Tab"/>
-                    </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
-            </WebView>
-        </muxc:TabViewItem>
+        
 
         <!--Web View-->
 
 
         <!--Status Text.-->
-        <TextBlock x:Name="statusText" Grid.Row="3" VerticalAlignment="Center" Margin="10,0" Foreground="{StaticResource wbDarkTextColor}"/>
+        <TextBlock x:Name="statusText" Grid.Row="3" VerticalAlignment="Center" Margin="10,0,10,0" Foreground="{StaticResource wbDarkTextColor}" Height="19"/>
     </Grid>
 </Page>

@@ -91,10 +91,18 @@ namespace Pulse_Ignite_WB_Tutorial
         /// </summary>
         private void NavigateHome()
         {
-            // Navigate the current selected web view to the home url.
-            currentSelectedWebView.Navigate(new Uri(homeUrl));
-            // Set the current selected tab header to home name.
-            currentSelectedTab.Header = currentSelectedWebView.DocumentTitle;
+            if (currentSelectedWebView == null)
+            {
+                webBrowser.Navigate(new Uri(homeUrl));
+                defaultTab.Header = webBrowser.DocumentTitle;
+            }
+            else
+            {
+                // Navigate the current selected web view to the home url.
+                currentSelectedWebView.Navigate(new Uri(homeUrl));
+                // Set the current selected tab header to home name.
+                currentSelectedTab.Header = currentSelectedWebView.DocumentTitle;
+            }
         }
 
         /// <summary>
@@ -280,8 +288,15 @@ namespace Pulse_Ignite_WB_Tutorial
             // check if the status text contains "BlankPage".
             if (!statusText.Text.Contains("BlankPage"))
             {
-                // Sets the status text to the current selected web view url
-                statusText.Text = currentSelectedWebView.Source.AbsoluteUri; // Error
+                if (currentSelectedWebView == null)
+                {
+                    statusText.Text = webBrowser.Source.AbsoluteUri;
+                }
+                else
+                {
+                    // Sets the status text to the current selected web view url
+                    statusText.Text = currentSelectedWebView.Source.AbsoluteUri; // Error 
+                }
             }
             else
             {
