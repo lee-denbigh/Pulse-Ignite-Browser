@@ -16,6 +16,7 @@ namespace Pulse_Ignite_WB_Tutorial
         // The file name
         string fileName = "settings.xml";
 
+
         public async void SaveSearchTerm(string SearchTerm, string title, string url, DateTime dateTime)
         {
             var doc = await DocumentLoad().AsAsyncOperation(); // Load the Xml file

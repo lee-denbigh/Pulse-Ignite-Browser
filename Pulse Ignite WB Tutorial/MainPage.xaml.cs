@@ -175,19 +175,26 @@ namespace Pulse_Ignite_WB_Tutorial
                 // Set the global veriable "prefix" to the selected engine.
                 prefix = await dt.GetSelectedEngineAttribute("prefix");
 
-                // add the prefix if it's not a settings page.
-                if (currentSelectedTab.Name != "settingsTab")
+                if (currentSelectedTab != null)
                 {
-                    if (currentSelectedWebView == null) // Posible error if no tab, could cause crash. <<Fix Needed>>
+                    // add the prefix if it's not a settings page.
+                    if (currentSelectedTab.Name != "settingsTab")
                     {
-                        // search with the prefix of the selected search engine on the default.
-                        webBrowser.Source = new Uri(prefix + SearchBar.Text);
+                        if (currentSelectedWebView == null) // Posible error if no tab, could cause crash. <<Fix Needed>>
+                        {
+                            // search with the prefix of the selected search engine on the default.
+                            webBrowser.Source = new Uri(prefix + SearchBar.Text);
+                        }
+                        else
+                        {
+                            // search with the prefix of the selected search engine on the current
+                            currentSelectedWebView.Source = new Uri(prefix + SearchBar.Text);
+                        }
                     }
-                    else
-                    {
-                        // search with the prefix of the selected search engine on the current
-                        currentSelectedWebView.Source = new Uri(prefix + SearchBar.Text);
-                    }
+                }
+                else
+                {
+                    
                 }
             }
 
@@ -484,6 +491,11 @@ namespace Pulse_Ignite_WB_Tutorial
         {
             DataTransfer dt = new DataTransfer();
             dt.SaveBookmark(currentSelectedWebView.Source.AbsoluteUri, currentSelectedWebView.DocumentTitle);
+        }
+
+        private void favButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void AddNewTab(Uri Url)

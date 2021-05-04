@@ -26,5 +26,27 @@ namespace Pulse_Ignite_WB_Tutorial
         {
             this.InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            GetBookmarks();
+        }
+
+        private async void GetBookmarks()
+        {
+            BookmarkList_Settings.Items.Clear();
+            DataTransfer dt = new DataTransfer();
+
+            List<BookmarkDetails> bookmarkDetails = await dt.GetBookmarkList();
+
+            for (int i = 0; i < bookmarkDetails.Count; i++)
+            {
+                ListBoxItem item = new ListBoxItem();
+                item.Style = Application.Current.Resources["pi_bookmarkSettingsListStyle"] as Style;
+                item.DataContext = bookmarkDetails[i];
+
+                BookmarkList_Settings.Items.Add(item);
+            }
+        }
     }
 }

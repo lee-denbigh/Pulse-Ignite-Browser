@@ -36,7 +36,7 @@ namespace Pulse_Ignite_WB_Tutorial
 
             if (!args.IsSettingsSelected)
             {
-                if(tag == "accountSetMenu")
+                if (tag == "accountSetMenu")
                 {
                     ContentFrame.Navigate(typeof(AccountSettings), null, args.RecommendedNavigationTransitionInfo);
                 }
@@ -51,7 +51,12 @@ namespace Pulse_Ignite_WB_Tutorial
                 else if (tag == "searchSetMenu")
                 {
                     ContentFrame.Navigate(typeof(SearchSettings), null, args.RecommendedNavigationTransitionInfo);
-                } 
+                }
+                else if(tag == "launchSettingsFile")
+                {
+                    DataTransfer dt = new DataTransfer();
+                    dt.LoadXmlFile();
+                }
             }
         }
 

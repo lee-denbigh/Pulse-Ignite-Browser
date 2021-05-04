@@ -17,7 +17,8 @@
         <!--NavigationView-->
         <NavigationView x:Name="SettingsNavView" PaneTitle="Settings" IsPaneToggleButtonVisible="True" IsSettingsVisible="False" Margin="0,1,0,0" SelectionChanged="SettingsNavView_SelectionChanged" IsBackButtonVisible="Collapsed" Background="{StaticResource wbBackground}">
             <NavigationView.MenuItems>
-                <NavigationViewItem Tag="accountSetMenu"  Icon="Account" Content="Accounts" /> <!--Profile/Account-->
+                <NavigationViewItem Tag="accountSetMenu"  Icon="Account" Content="Accounts" />
+                <!--Profile/Account-->
                 <NavigationViewItem Tag="bookmarkSetMenu" Icon="Bookmarks" Content="Bookmarks"/>
                 <NavigationViewItem Tag="historySetMenu" Icon="Clock" Content="History"/>
                 <NavigationViewItem Tag="searchSetMenu" Content="Search">
@@ -25,6 +26,7 @@
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE721;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Tag="launchSettingsFile" Icon="OpenFile" Content="Launch Settings File" />
             </NavigationView.MenuItems>
 
             <Frame x:Name="ContentFrame"/>

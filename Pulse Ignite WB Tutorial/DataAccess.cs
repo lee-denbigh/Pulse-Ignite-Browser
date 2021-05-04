@@ -14,6 +14,7 @@ namespace Pulse_Ignite_WB_Tutorial
     {
         public async void CreateSettingsFile()
         {
+            
             try
             {
                 var storageFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("settings.xml");
