@@ -18,6 +18,7 @@ using muxc = Microsoft.UI.Xaml.Controls;
 using static Windows.Web.Http.HttpClient;
 using System.Diagnostics;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -83,6 +84,9 @@ namespace Pulse_Ignite_WB_Tutorial
                 // Naviaget home if they aren't.
                 NavigateHome(); 
             }
+
+            currentSelectedTab = defaultTab;
+            currentSelectedWebView = webBrowser;
         }
 
         /// <summary>
@@ -491,11 +495,9 @@ namespace Pulse_Ignite_WB_Tutorial
         {
             DataTransfer dt = new DataTransfer();
             dt.SaveBookmark(currentSelectedWebView.Source.AbsoluteUri, currentSelectedWebView.DocumentTitle);
-        }
 
-        private void favButton_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            bookmarkFeedbackTip.Subtitle = $"'{currentSelectedWebView.DocumentTitle}' was added to your favourites.";
+            bookmarkFeedbackTip.IsOpen = true;
         }
 
         private void AddNewTab(Uri Url)

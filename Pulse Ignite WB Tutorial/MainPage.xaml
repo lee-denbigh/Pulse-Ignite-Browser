@@ -75,11 +75,18 @@
 
             <!--Favourite Button-->
             <Rectangle  Width="1" Grid.Column="4" HorizontalAlignment="Left" Fill="{StaticResource wbLighterBlue}" Margin="0,5"/>
-            <Button x:Name="favButton" Grid.Column="4" Margin="10,0" Background="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource wbForeground}" Click="favButton_Click">
-                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE734;" />
-            </Button>
-
-
+            <StackPanel Orientation="Horizontal" Grid.Column="4">
+                <Button x:Name="favButton" Margin="10,0" Background="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource wbForeground}" Click="favButton_Click">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE734;" />
+                </Button>
+                <muxc:TeachingTip x:Name="bookmarkFeedbackTip"
+                                  Title="Bookmark Added Successfully"
+                                  Target="{x:Bind favButton}">
+                    <muxc:TeachingTip.IconSource>
+                        <muxc:SymbolIconSource Symbol="Accept" />
+                    </muxc:TeachingTip.IconSource>
+                </muxc:TeachingTip>
+            </StackPanel>
 
             <!--Settings Flyout-->
             <Button x:Name="MenuFlyoutBtn" Grid.Column="4" HorizontalAlignment="Right" Margin="10,0" Background="{x:Null}" Foreground="{StaticResource wbForeground}" BorderThickness="0">
