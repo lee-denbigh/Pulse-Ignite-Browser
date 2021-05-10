@@ -17,6 +17,7 @@
             <RowDefinition Height="32"/>
             <!--Title Bar Row Definition-->
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/> <!--Bookmark Tabs-->
             <RowDefinition/>
             <RowDefinition Height="32"/>
         </Grid.RowDefinitions>
@@ -77,15 +78,36 @@
             <Rectangle  Width="1" Grid.Column="4" HorizontalAlignment="Left" Fill="{StaticResource wbLighterBlue}" Margin="0,5"/>
             <StackPanel Orientation="Horizontal" Grid.Column="4">
                 <Button x:Name="favButton" Margin="10,0" Background="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource wbForeground}" Click="favButton_Click">
+                    <Button.Flyout>
+                        <Flyout x:Name="bookmark_btn_flyout">
+                            <StackPanel Orientation="Vertical" Width="300">
+                                <Grid Height="60" Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Add Bookmark" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <SymbolIcon Symbol="OutlineStar" Grid.Column="1" />
+                                </Grid>
+                                <TextBlock Text="Title" />
+                                <TextBox x:Name="bm_title_box" PlaceholderText="Document Title" Margin="0,0,0,10" />
+
+                                <TextBlock Text="Url" />
+                                <TextBox x:Name="bm_url_box" PlaceholderText="Web Page Url" Margin="0,0,0,30" />
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="bm_cancel_btn" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="20,10" Click="bm_cancel_btn_Click" />
+                                    <Button x:Name="bm_add_btn" Content="Add" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="20,10" Click="bm_add_btn_Click"/>
+                                </Grid>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE734;" />
                 </Button>
-                <muxc:TeachingTip x:Name="bookmarkFeedbackTip"
-                                  Title="Bookmark Added Successfully"
-                                  Target="{x:Bind favButton}">
-                    <muxc:TeachingTip.IconSource>
-                        <muxc:SymbolIconSource Symbol="Accept" />
-                    </muxc:TeachingTip.IconSource>
-                </muxc:TeachingTip>
             </StackPanel>
 
             <!--Settings Flyout-->
@@ -97,6 +119,13 @@
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE713;" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
+                        <MenuFlyoutSeparator />
+                        <ToggleMenuFlyoutItem x:Name="bookmarkbarToggle" Text="Show Bookmark Bar" IsChecked="False">
+                            <ToggleMenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Bookmarks" />
+                            </ToggleMenuFlyoutItem.Icon>
+                        </ToggleMenuFlyoutItem>
+
                     </MenuFlyout>
                 </Button.Flyout>
 
@@ -104,8 +133,14 @@
             </Button>
         </Grid>
 
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden"
+                      HorizontalScrollMode="Auto" VerticalScrollMode="Disabled">
+            <StackPanel x:Name="bookmarkBarSP" Orientation="Horizontal">
+                
+            </StackPanel>
+        </ScrollViewer>
 
-        <muxc:TabView x:Name="TabControl" Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch" Background="{StaticResource wbBackground}"  AddTabButtonClick="TabControl_AddTabButtonClick" TabCloseRequested="TabControl_TabCloseRequested" SelectionChanged="TabControl_SelectionChanged">
+        <muxc:TabView x:Name="TabControl" Grid.Row="3" Grid.Column="1" VerticalAlignment="Stretch" Background="{StaticResource wbBackground}"  AddTabButtonClick="TabControl_AddTabButtonClick" TabCloseRequested="TabControl_TabCloseRequested" SelectionChanged="TabControl_SelectionChanged">
             <muxc:TabView.TabStripHeader>
                 <Grid>
                     <!--Progress Ring-->
@@ -132,6 +167,6 @@
 
 
         <!--Status Text.-->
-        <TextBlock x:Name="statusText" Grid.Row="3" VerticalAlignment="Center" Margin="10,0,10,0" Foreground="{StaticResource wbDarkTextColor}" Height="19"/>
+        <TextBlock x:Name="statusText" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,10,0" Foreground="{StaticResource wbDarkTextColor}" Height="19"/>
     </Grid>
 </Page>

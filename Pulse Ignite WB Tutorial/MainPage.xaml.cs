@@ -56,6 +56,32 @@ namespace Pulse_Ignite_WB_Tutorial
 
             // On start navigate the default browser to home that is set in the xml file.
             GetHome();
+
+            // Load Bookmarks
+           SetupBookmarks();
+        }
+
+        private async void SetupBookmarks()
+        {
+            await GetBookmarks();
+        }
+
+        private async Task GetBookmarks()
+        {
+            DataTransfer dt = new DataTransfer();
+            await Task.Delay(1);
+            
+            List<BookmarkDetails> BookmarkItemList = await dt.GetBookmarkList();
+
+            for (int i = 0; i < BookmarkItemList.Count; i++)
+            {
+                Button btn = new Button();
+                btn.Style = Application.Current.Resources["BookmarkBtn"] as Style;
+                btn.DataContext = BookmarkItemList[i];
+                btn.Margin = new Thickness(10, 0, 5, 0);
+
+                bookmarkBarSP.Children.Add(btn);
+            }
         }
 
         /// <summary>
@@ -493,11 +519,29 @@ namespace Pulse_Ignite_WB_Tutorial
 
         private void favButton_Click(object sender, RoutedEventArgs e)
         {
-            DataTransfer dt = new DataTransfer();
-            dt.SaveBookmark(currentSelectedWebView.Source.AbsoluteUri, currentSelectedWebView.DocumentTitle);
+            bm_title_box.Text = currentSelectedWebView.DocumentTitle;
+            bm_url_box.Text = currentSelectedWebView.Source.AbsoluteUri;
+        }
 
-            bookmarkFeedbackTip.Subtitle = $"'{currentSelectedWebView.DocumentTitle}' was added to your favourites.";
-            bookmarkFeedbackTip.IsOpen = true;
+        private async void bm_add_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataTransfer dt = new DataTransfer();
+            string host = currentSelectedWebView.Source.Host + "/favicon.ico";
+
+            if (!string.IsNullOrEmpty(bm_title_box.Text) && !string.IsNullOrEmpty(bm_url_box.Text))
+            {
+                dt.SaveBookmark(bm_url_box.Text, bm_title_box.Text, host);
+            }
+            else
+            {
+                MessageDialog msg = new MessageDialog("Fields must not be null");
+                await msg.ShowAsync();
+            }
+        }
+
+        private void bm_cancel_btn_Click(object sender, RoutedEventArgs e)
+        {
+            bookmark_btn_flyout.Hide();
         }
 
         private void AddNewTab(Uri Url)

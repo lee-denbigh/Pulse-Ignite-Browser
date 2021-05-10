@@ -240,7 +240,7 @@ namespace Pulse_Ignite_WB_Tutorial
 
         // Bookmarks
 
-        public async void SaveBookmark(string Url, string Title)
+        public async void SaveBookmark(string Url, string Title, string Favicon)
         {
             var doc = await DocumentLoad();
 
@@ -249,9 +249,11 @@ namespace Pulse_Ignite_WB_Tutorial
             var bookmark = bookmarks[0].AppendChild(doc.CreateElement("bookmark"));
             var bookUrl = bookmark.AppendChild(doc.CreateElement("url"));
             var bookTitle = bookmark.AppendChild(doc.CreateElement("title"));
+            var favicon = bookmark.AppendChild(doc.CreateElement("favicon"));
 
             bookUrl.InnerText = Url;
             bookTitle.InnerText = Title;
+            favicon.InnerText = Favicon;
 
             SaveDoc(doc);
         }
@@ -272,6 +274,7 @@ namespace Pulse_Ignite_WB_Tutorial
 
                     string returnUrl = string.Empty;
                     string returnTitle = string.Empty;
+                    string returnFavicon = string.Empty;
 
                     if(bookmark[i].NodeName == "bookmark")
                     {
@@ -286,6 +289,11 @@ namespace Pulse_Ignite_WB_Tutorial
                             {
                                 returnTitle = children[j].InnerText;
                             }
+
+                            if (children[j].NodeName == "favicon")
+                            {
+                                returnFavicon = children[j].InnerText;
+                            }
                         }
                     }
 
@@ -294,7 +302,8 @@ namespace Pulse_Ignite_WB_Tutorial
                         list.Add(new BookmarkDetails
                         {
                             Title = returnTitle,
-                            Url = returnUrl
+                            Url = returnUrl,
+                            Favicon = returnFavicon
                         });
                     }
                 }
@@ -338,6 +347,11 @@ namespace Pulse_Ignite_WB_Tutorial
         public string Title
         {
             get;set;
+        }
+
+        public string Favicon
+        {
+            get; set;
         }
     }
 
